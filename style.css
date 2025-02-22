@@ -4,9 +4,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.1s ease-in-out; /* Aggiunta transizione */
+    transition: background 0.1s ease-in-out;
     font-family: 'Impact', fantasy;
-    background-color: #333; /* Sfondo iniziale scuro */
+    background-color: #333;
 }
 
 .leopard {
@@ -17,4 +17,41 @@ body {
     background: repeating-linear-gradient(45deg, #000 0 10px, #fff 10px 20px);
 }
 
-/* ... (resto del CSS rimane invariato) */
+.container {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0,0,0,0.9);
+    border-radius: 20px;
+    border: 3px solid #39FF14;
+    box-shadow: 0 0 50px #FF00FF;
+    position: relative;
+}
+
+#bpmDisplay {
+    font-size: 6rem;
+    color: #39FF14;
+    text-shadow: 0 0 30px #39FF14;
+    margin: 1rem 0;
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: -3px;
+    transition: transform 0.1s ease-in-out;
+}
+
+#bpmDisplay.jump {
+    transform: translateY(-50px);
+}
+
+.tap-area {
+    padding: 2rem;
+    background: #FF00FF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 2em;
+    transition: transform 0.05s;
+    color: black;
+}
+
+.tap-area:active {
+    transform: scale(0.9) rotate(1deg);
+}
