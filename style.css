@@ -6,10 +6,6 @@ body {
     align-items: center;
     transition: background 0.1s ease-in-out;
     font-family: 'Impact', fantasy;
-    background-color: #333;
-}
-
-.leopard {
     background: repeating-conic-gradient(#FFD700 0% 25%, #8B4513 0% 50%) 50%/50px 50px;
 }
 
@@ -25,6 +21,11 @@ body {
     border: 3px solid #39FF14;
     box-shadow: 0 0 50px #FF00FF;
     position: relative;
+    transition: box-shadow 0.1s ease-in-out;
+}
+
+.container.illuminated {
+    box-shadow: 0 0 80px #FF00FF, 0 0 120px #39FF14;
 }
 
 #bpmDisplay {
