@@ -56,3 +56,9 @@ body {
 .tap-area:active {
     transform: scale(0.9) rotate(1deg);
 }
+
+.instruction {
+    color: #39FF14;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
