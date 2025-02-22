@@ -11,18 +11,49 @@ let lastBpm = 0;
 function calculateBPM() {
     const now = performance.now();
 
-    // Cambio sfondo temporaneo
-    body.classList.add('leopard'); // o 'zebra', a seconda del tuo design
+    body.classList.add('leopard');
     setTimeout(() => {
-        body.classList.remove('leopard'); // Ripristina lo sfondo
-    }, 100); // Durata del cambio sfondo (100ms)
+        body.classList.remove('leopard');
+    }, 100);
 
     bpmDisplay.classList.add('jump');
     setTimeout(() => {
         bpmDisplay.classList.remove('jump');
     }, 100);
 
-    // ... (resto della funzione calculateBPM rimane invariato)
+    if (tapTimes.length > 0) {
+        const timeDiff = now - tapTimes[tapTimes.length - 1];
+        if (timeDiff > 5000) tapTimes = [];
+    }
+
+    tapTimes.push(now);
+
+    if (tapTimes.length > 1) {
+        const intervals = [];
+        for (let i = 1; i < tapTimes.length; i++) {
+            intervals.push(tapTimes[i] - tapTimes[i - 1]);
+        }
+        const avg = intervals.reduce((a,b) => a + b) / intervals.length;
+        const bpm = Math.round(60000 / avg);
+        bpmDisplay.textContent = bpm;
+        lastBpm = bpm;
+        lastBpmSpan.textContent = bpm;
+    }
+
+    tapCountSpan.textContent = tapTimes.length;
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+        tapTimes = [];
+        tapCountSpan.textContent = '0';
+        bpmDisplay.textContent = lastBpm;
+    }, 5000);
 }
 
-// ... (resto del codice JavaScript rimane invariato)
+tapButton.addEventListener('click', calculateBPM);
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && !e.repeat) {
+        e.preventDefault();
+        calculateBPM();
+    }
+});
