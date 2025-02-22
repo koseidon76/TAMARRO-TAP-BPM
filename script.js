@@ -3,6 +3,7 @@ const bpmDisplay = document.getElementById('bpmDisplay');
 const lastBpmSpan = document.getElementById('lastBpm');
 const tapCountSpan = document.getElementById('tapCount');
 const body = document.body;
+const container = document.querySelector('.container');
 
 let tapTimes = [];
 let timeoutId;
@@ -11,9 +12,14 @@ let lastBpm = 0;
 function calculateBPM() {
     const now = performance.now();
 
-    body.classList.add('leopard');
+    body.classList.add('zebra');
     setTimeout(() => {
-        body.classList.remove('leopard');
+        body.classList.remove('zebra');
+    }, 100);
+
+    container.classList.add('illuminated');
+    setTimeout(() => {
+        container.classList.remove('illuminated');
     }, 100);
 
     bpmDisplay.classList.add('jump');
